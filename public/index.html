@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>IBook Homepage</title>
+
+  <link rel="stylesheet" type="text/css" href="./stylesheets/mystyle.css" />
+  <script src="http://maps.googleapis.com/maps/api/js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+</head>
+
+<body>
+  <script src="./javascripts/facebook.js"></script>
+  <!--
+  Below we include the Login Button social plugin. This button uses
+  the JavaScript SDK to present a graphical Login button that triggers
+  the FB.login() function when clicked.
+-->
+
+
+  
+  <div class="container">
+
+    <div id="pageHeader">
+      <div id="naviBar">
+        <ul id="menulist">
+          <li>Friends</li>
+          <li>Status</li>
+          <li>Places</li>
+          <li>Myself</li>
+          <li>About</li>
+        </ul>
+      </div>
+      <h1>IBook</h1>
+      <p>One Book, One World</p>
+    </div>
+    <div class="wrapper">
+
+      <div id="menubar">
+        <div id="profile">
+          <a href="profile.html">
+            <img src="./images/profile.jpg" width="180" height="180">
+          </a>
+          <div id="status" style="text-align:center" >
+  		  </div>
+          <center>
+            <fb:login-button id = "login" scope="public_profile,user_tagged_places" onlogin="checkLoginState();">
+            </fb:login-button>
+            <button id = "logout" onclick="logout()">Log Out</button>
+          </center>
+        </div>
+        <ul id="menulist">
+          <li class="menuitem">News</li>
+          <li class="menuitem">Messages</li>
+          <li class="menuitem">Photos</li>
+          <li class="menuitem">Events</li>
+          <li class="menuitem">Others</li>
+        </ul>
+      </div>
+      <div class="main">
+        <div id="statusBar">
+          <a id="statusphoto" href="status.html">
+            <img src="./images/status.jpg" width="200" height="150">
+          </a>
+          <ul id="statuslist">
+            <li id="post">
+              <a href="post.html">
+                <img src="./images/post.png" width="30" height="30">
+              </a>
+            </li>
+            <li id="photo">
+              <a href="photo.html">
+                <img src="./images/photo.png" width="30" height="30">
+              </a>
+            </li>
+            <li id="like">
+              <a href="like.html">
+                <img src="./images/like.png" width="30" height="30">
+              </a>
+            </li>
+            <li id="discuss">
+              <a href="discuss.html">
+                <img src="./images/discuss.png" width="30" height="30">
+              </a>
+            </li>
+            <li id="delete">
+              <a href="delete.html">
+                <img src="./images/delete.png" width="30" height="30">
+              </a>
+            </li>
+          </ul>
+          <h1>
+	  			What's up!?
+	  		</h1>
+          <p>
+            Update new status here........................
+
+          </p>
+        </div>
+        <div id="newsBar">
+          <a href="news.html">
+            <img src="./images/news.jpg" width="300" height="200">
+          </a>
+          <ul id="newslist">
+            <li>News1...................</li>
+            <li>News2...................</li>
+            <li>News3....................</li>
+            <li>News4....................</li>
+            <li>News5....................</li>
+            <li>News6....................</li>
+          </ul>
+
+        </div>
+
+
+      </div>
+
+      <div id="friendlist">
+        <h3>Friend Location</h3>
+        
+        <ul id = "fl">
+          <li id = "display" onclick="display(this)">Clear All</li>
+        </ul>
+      </div>
+    </div>
+    <div id="map-canvas" style="width:100%;height:380px;"></div>
+    <div id="tail">
+      <h3>Group Member:</h3>
+      <ul>
+        <li>Hao Wen a1662027</li>
+        <li>Zhouyu a1639898</li>
+        <li>Linlin Song a1662548</li>
+      </ul>
+    </div>
+
+  </div>
+
+</body>
+
+</html>

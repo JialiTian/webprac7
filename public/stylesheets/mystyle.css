@@ -1,0 +1,143 @@
+body {
+    font: 100% Lucida Sans;
+    margin: 20px;
+    line-height: 26px;
+}
+
+.container {
+    min-width: 900px;
+}
+
+.wrapper {
+    position: relative;
+    overflow: auto;
+}
+.main {
+    padding: 10px;
+    margin: 0 210px;
+}
+#naviBar, #pageHeader, #profile, #sidebar, #tail, .menuitem {
+    margin: 4px;
+}
+#naviBar{
+	float : right;
+}
+#naviBar li{
+	border: 1px solid grey;
+    list-style-type: none;
+    padding: 2px;
+    cursor: pointer;
+	display: inline;
+}
+#pageHeader {
+    background-image: url("../images/head.jpg");
+    color: white;
+    padding: 10px;
+}
+#profile img{
+	border: 5px solid lightblue;
+}
+#logout{
+    background-color: cornflowerblue;
+    color:white;
+    display : none;
+}
+#menubar {
+    width: 210px;
+    float: left
+}
+
+.main {
+    padding: 10px;
+    margin: 0 210px;
+}
+#statusBar, #newsBar{
+	border: 1px solid lightblue;
+	overflow: auto;
+	padding: 5px;
+}
+
+#statusphoto{
+	padding:5px;
+	float: left;
+}
+#statusBar li{
+	display: inline;
+}
+
+#newsBar a{
+	float:right;
+}
+
+#friendlist {
+	background-color: lightblue;
+	border: grey;
+    padding: 10px;
+    width: 180px;
+    bottom: 0;
+    top: 0;
+    right: 0;
+    position: absolute;
+    
+}
+#fl{
+    margin:0;
+    padding:0;
+}
+#fl li{
+    background-color: lightgreen;
+    border: 1px solid grey;
+    list-style-type: none;
+    padding: 2px;
+    cursor: pointer;
+    
+}
+#display{
+	text-align: center;
+	margin:5px;
+}
+#friendlist h3{
+	text-align:center;
+	color: blue;
+}
+
+#tail {
+    background-color: grey;
+    text-align: center;
+    padding: 10px;
+    font-size: 50%;
+    line-height: 12px;
+}
+
+#tail li{
+	border: 1px none grey;
+    list-style-type: none;
+    padding: 2px;
+	display: inline;
+}
+
+#top h1, #top p, #menulist {
+    margin: 0;
+    padding: 0;
+}
+
+.menuitem {
+    background-color: linen;
+    border: 1px solid grey;
+    list-style-type: none;
+    padding: 2px;
+    cursor: pointer;
+}
+
+.menuitem:hover {
+    background-color: #ffffff;
+}
+
+a {
+    color: #000000;
+    text-decoration: underline;
+}
+
+a:hover {
+    text-decoration: none;
+}
