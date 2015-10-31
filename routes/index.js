@@ -81,7 +81,8 @@ function processFriends(friends, accessToken, callback) {
 						console.log('adding place: ' + JSON.stringify(place));
 						var markerInfo = { name: name , 
 										lat:place.latitude,
-										lng:place.longitude
+										lng:place.longitude,
+										visible:"show"
 										}; 
 						locationData.friends.push(markerInfo);
 						placeIndex++; 
@@ -113,4 +114,40 @@ function getFriendLocations(friend, accessToken, callback) {
 			}
 	);
 }
+router.post('/updateFriendStatus', function(req, res) { 
+	//Connect to the database
+	req.pool.getConnection(function(err,connection) { 
+		if (err) throw err;
+		var query = "SELECT fbid FROM user where user.name='"+req.data.name+"';"; 
+		connection.query(query,
+			function(err, rows, fields) { 
+				if (err) throw err;
+				query = "UPDATE friend SET visible='"+req.data.visible+
+					"' WHERE fbid1="+req.session.fbid+" AND fbid2="+rows[0].fbid+";";
+				connection.query(query,
+					function(err, rows, fields) { 
+						connection.release();
+						if (err) throw err; 
+						res.sendStatus(200)
+				}); 
+		});
+	}); 
+});
+
+router.get('/model/friendslist', function(req, res) {
+	// connect to database
+	req.pool.getConnection(function(err,connection) { 
+		if (err) throw err;
+		// send query
+		connection.query('SELECT name, visible FROM friend INNER JOIN user on fbid=fbid2 WHERE friend.fbid1='+req.session.fbid,
+						function(err, rows, fields) { 
+							if (err) throw err;
+							console.log(rows);
+							// release connection
+							connection.release();
+							// return query response to client
+							res.send(JSON.stringify({friends: rows})); 
+						});
+	}); 
+});
 module.exports = router;

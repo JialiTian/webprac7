@@ -6,8 +6,9 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
+var SessionStore = require('express-mysql-session');
 var config = require('./config')
-
+var mysql = require('mysql');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
@@ -24,12 +25,41 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(session({
+app.use(session(
+       {
           secret: config.sessionSecret,
           resave: false,
-          saveUninitialized: false}));
+          saveUninitialized: false,
+          store: new SessionStore(
+            { host: config.db.host,
+              user: config.db.user, 
+              password: config.db.password, 
+              database: config.db.database
+            })
+       }));
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+
+/* create a 'pool' (group) of connections that can be used for interacting with the database. */
+var dbConnectionPool = mysql.createPool( 
+  { host: config.db.host,
+    user: config.db.user, 
+    password: config.db.password, 
+    database: config.db.database
+});
+/* middleware for accessing database. We need access to the database to be available 
+  *before* we process routes in index.js, so this app.use() needs to be *before*the
+  app.use('/', routes);
+  Express will run this function on every request and then continue with the next module, 
+  index.js. So for all requests that we handle in index.js, we’ll be able to access the pool
+  using req.pool 
+*/
+app.use(function(req, res, next) { 
+    req.pool = dbConnectionPool; 
+    next();
+  });
+  
 app.use('/', routes);
 app.use('/users', users);
 // catch 404 and forward to error handler
