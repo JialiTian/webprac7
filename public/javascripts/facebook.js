@@ -119,7 +119,7 @@ function authToServer(authResponse, callback) {
 function displayFriendsOnMap(){
 	
 	
-    $(this).siblings().css({"background-color": "lightgreen"});
+  $(this).siblings().css({"background-color": "lightgreen"});
 	$(this).css({"background-color": "white"});
   for(var i = 0;i<markerlist.length;i++){
     if(markerlist[i].title==this.innerHTML){
